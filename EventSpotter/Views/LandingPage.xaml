@@ -1,0 +1,160 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventSpotter.Views.LandingPage"
+             BackgroundColor="#020810"
+             Shell.NavBarIsVisible="False">
+
+    <Grid>
+
+        <!-- Background glow -->
+        <BoxView>
+            <BoxView.Background>
+                <RadialGradientBrush Center="0.5,1.0" Radius="1.0">
+                    <GradientStop Color="#1200D4FF" Offset="0" />
+                    <GradientStop Color="Transparent" Offset="0.6" />
+                </RadialGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+
+        <!-- Main content -->
+        <VerticalStackLayout VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             Spacing="24"
+                             Padding="20">
+
+            <!-- Eyebrow -->
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="8">
+                <Ellipse x:Name="StatusDot"
+                         WidthRequest="6" HeightRequest="6"
+                         Fill="#00d4ff"
+                         VerticalOptions="Center"/>
+                <Label Text="SYSTEM ONLINE  ·  GROUP 5  ·  INSPIRATION LAB"
+                       TextColor="#00d4ff"
+                       FontSize="11"
+                       Opacity="0.7"
+                       CharacterSpacing="3"
+                       FontFamily="OpenSansRegular"/>
+            </HorizontalStackLayout>
+
+            <!-- Title -->
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="0">
+                <Label Text="EVENT"
+                       TextColor="White"
+                       FontSize="70"
+                       HorizontalTextAlignment="Center"
+                       FontFamily="OpenSansRegular"/>
+                <Label Text="SPOTTER"
+                       TextColor="#00d4ff"
+                       FontSize="70"
+                       HorizontalTextAlignment="Center"
+                       FontFamily="OpenSansRegular">
+                    <Label.Shadow>
+                        <Shadow Brush="#00d4ff" Offset="0,0" Radius="30" Opacity="0.4"/>
+                    </Label.Shadow>
+                </Label>
+            </VerticalStackLayout>
+
+            <!-- Subtitle -->
+            <Label Text="Cultural discovery engine for the modern explorer.&#10;Select your destination."
+                   TextColor="#3a5068"
+                   FontSize="13"
+                   CharacterSpacing="1"
+                   HorizontalTextAlignment="Center"
+                   LineHeight="1.8"/>
+
+            <!-- Portal Card -->
+            <Grid x:Name="PortalCard"
+                  WidthRequest="220"
+                  HeightRequest="240"
+                  Margin="0,16,0,0">
+
+                <Frame BackgroundColor="#1A060D1F"
+                       BorderColor="#1A00D4FF"
+                       Padding="32,28"
+                       CornerRadius="4"
+                       HasShadow="False">
+                    <VerticalStackLayout Spacing="10">
+
+                        <!-- Icon -->
+                        <Border BackgroundColor="#1A00D4FF"
+                                WidthRequest="44"
+                                HeightRequest="44"
+                                HorizontalOptions="Start"
+                                StrokeThickness="1"
+                                Stroke="#3300D4FF">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="22"/>
+                            </Border.StrokeShape>
+                            <Label Text="◈"
+                                   TextColor="#00d4ff"
+                                   FontSize="22"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+
+                        <Label Text="EXPLORE"
+                               TextColor="White"
+                               FontSize="13"
+                               CharacterSpacing="2"
+                               FontFamily="OpenSansRegular"
+                               Margin="0,4,0,0"/>
+
+                        <Label Text="Browse live events across Europe"
+                               TextColor="#3a5068"
+                               FontSize="11"
+                               LineHeight="1.5"/>
+
+                        <Label x:Name="PortalArrow"
+                               Text="→"
+                               TextColor="#00d4ff"
+                               FontSize="16"
+                               Opacity="0"
+                               Margin="0,8,0,0"/>
+
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Corner TL -->
+                <BoxView WidthRequest="8" HeightRequest="1"
+                         Color="#00d4ff" Opacity="0.5"
+                         HorizontalOptions="Start" VerticalOptions="Start"
+                         TranslationX="4" TranslationY="4"/>
+                <BoxView WidthRequest="1" HeightRequest="8"
+                         Color="#00d4ff" Opacity="0.5"
+                         HorizontalOptions="Start" VerticalOptions="Start"
+                         TranslationX="4" TranslationY="4"/>
+
+                <!-- Corner BR -->
+                <BoxView WidthRequest="8" HeightRequest="1"
+                         Color="#00d4ff" Opacity="0.5"
+                         HorizontalOptions="End" VerticalOptions="End"
+                         TranslationX="-4" TranslationY="-4"/>
+                <BoxView WidthRequest="1" HeightRequest="8"
+                         Color="#00d4ff" Opacity="0.5"
+                         HorizontalOptions="End" VerticalOptions="End"
+                         TranslationX="-4" TranslationY="-4"/>
+
+                <!-- Gesture recognizers -->
+                <Grid.GestureRecognizers>
+                    <PointerGestureRecognizer
+                        PointerEntered="OnPointerEntered"
+                        PointerExited="OnPointerExited"/>
+                    <TapGestureRecognizer Tapped="OnExploreTapped"/>
+                </Grid.GestureRecognizers>
+
+            </Grid>
+
+            <!-- Footer -->
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   Spacing="10"
+                                   Margin="0,12,0,0">
+                <Label Text="HARKIRAT SINGH" TextColor="#3a5068" FontSize="10" CharacterSpacing="2"/>
+                <Label Text="·" TextColor="#3a5068" FontSize="10" Opacity="0.4"/>
+                <Label Text="DENYS ULCHENKO" TextColor="#3a5068" FontSize="10" CharacterSpacing="2"/>
+                <Label Text="·" TextColor="#3a5068" FontSize="10" Opacity="0.4"/>
+                <Label Text="2026" TextColor="#3a5068" FontSize="10" CharacterSpacing="2"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

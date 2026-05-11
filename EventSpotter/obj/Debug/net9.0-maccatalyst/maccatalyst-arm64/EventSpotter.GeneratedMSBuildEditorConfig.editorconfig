@@ -1,0 +1,97 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net9.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = EventSpotter
+build_property.ProjectDir = /Users/Harkirat/Desktop/xaml_project/EventSpotter/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[/Users/Harkirat/Desktop/xaml_project/EventSpotter/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EventSpotter.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[/Users/Harkirat/Desktop/xaml_project/EventSpotter/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EventSpotter.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[/Users/Harkirat/Desktop/xaml_project/EventSpotter/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EventSpotter.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[/Users/Harkirat/Desktop/xaml_project/EventSpotter/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EventSpotter.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Colors.xaml
+
+[/Users/Harkirat/Desktop/xaml_project/EventSpotter/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EventSpotter.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml
+
+[/Users/Harkirat/Desktop/xaml_project/EventSpotter/Views/AdminPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EventSpotter.Views.AdminPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/AdminPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/AdminPage.xaml
+
+[/Users/Harkirat/Desktop/xaml_project/EventSpotter/Views/BookmarksPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EventSpotter.Views.BookmarksPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/BookmarksPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/BookmarksPage.xaml
+
+[/Users/Harkirat/Desktop/xaml_project/EventSpotter/Views/CartPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EventSpotter.Views.CartPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/CartPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/CartPage.xaml
+
+[/Users/Harkirat/Desktop/xaml_project/EventSpotter/Views/EventDetailPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EventSpotter.Views.EventDetailPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/EventDetailPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/EventDetailPage.xaml
+
+[/Users/Harkirat/Desktop/xaml_project/EventSpotter/Views/LandingPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EventSpotter.Views.LandingPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/LandingPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/LandingPage.xaml
+
+[/Users/Harkirat/Desktop/xaml_project/EventSpotter/Views/LoginPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EventSpotter.Views.LoginPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/LoginPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/LoginPage.xaml
+
+[/Users/Harkirat/Desktop/xaml_project/EventSpotter/Views/MainSitePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EventSpotter.Views.MainSitePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/MainSitePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/MainSitePage.xaml
+
+[/Users/Harkirat/Desktop/xaml_project/EventSpotter/Views/PreferencesPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EventSpotter.Views.PreferencesPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/PreferencesPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/PreferencesPage.xaml

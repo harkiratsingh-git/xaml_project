@@ -1,0 +1,177 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventSpotter.Views.PreferencesPage"
+             BackgroundColor="#03060f"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="56, *">
+
+        <!-- NAV -->
+        <Border Grid.Row="0"
+                BackgroundColor="#E603060F"
+                Padding="20,0"
+                StrokeThickness="0">
+            <Border.StrokeShape>
+                <Rectangle/>
+            </Border.StrokeShape>
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <Button Text="← SKIP FOR NOW"
+                        Clicked="OnSkipClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="#3a5068"
+                        FontFamily="OpenSansRegular"
+                        FontSize="11"/>
+                <Label Grid.Column="1"
+                       Text="MISSION PROFILE"
+                       TextColor="#00d4ff"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontFamily="OpenSansRegular"
+                       FontSize="13"
+                       CharacterSpacing="3"/>
+                <Label Grid.Column="2"
+                       x:Name="StepLabel"
+                       Text="1/2"
+                       TextColor="#3a5068"
+                       VerticalOptions="Center"
+                       FontFamily="OpenSansRegular"
+                       FontSize="10"/>
+            </Grid>
+        </Border>
+
+        <!-- SCROLLABLE CONTENT -->
+        <ScrollView Grid.Row="1">
+            <Grid Padding="30" RowDefinitions="Auto, *">
+
+                <VerticalStackLayout Grid.Row="0" Spacing="40" MaximumWidthRequest="680">
+
+                    <!-- HEADER -->
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="✦ PERSONALISE YOUR EXPERIENCE"
+                               TextColor="#00d4ff"
+                               Opacity="0.7"
+                               FontSize="10"
+                               CharacterSpacing="4"
+                               FontFamily="OpenSansRegular"/>
+                        <Label x:Name="MainTitle"
+                               Text="WHERE ARE&#10;YOU BASED?"
+                               TextColor="White"
+                               FontSize="32"
+                               LineHeight="1.1"
+                               FontFamily="OpenSansRegular"/>
+                        <Label x:Name="SubTitle"
+                               Text="Type your city — we'll suggest matches"
+                               TextColor="#3a5068"
+                               FontSize="11"
+                               FontFamily="OpenSansRegular"/>
+                    </VerticalStackLayout>
+
+                    <!-- STEP 1: CITY SEARCH -->
+                    <VerticalStackLayout x:Name="Step1Content" Spacing="20">
+
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="CITY OR COUNTRY"
+                                   FontSize="9"
+                                   TextColor="#3a5068"
+                                   CharacterSpacing="2"
+                                   FontFamily="OpenSansRegular"/>
+                            <Entry x:Name="CityEntry"
+                                   Placeholder="e.g. Brussels, Paris..."
+                                   PlaceholderColor="#3a5068"
+                                   TextColor="#e8f4ff"
+                                   BackgroundColor="#0D00D4FF"
+                                   TextChanged="OnCityInputChanged"
+                                   FontFamily="OpenSansRegular"/>
+
+                            <!-- Suggestions list — shown below entry -->
+                            <Frame x:Name="SuggestionsFrame"
+                                   IsVisible="False"
+                                   BackgroundColor="#F2080D1A"
+                                   BorderColor="#3300D4FF"
+                                   Padding="0"
+                                   CornerRadius="2"
+                                   HasShadow="False">
+                                <VerticalStackLayout x:Name="SuggestionsList"/>
+                            </Frame>
+                        </VerticalStackLayout>
+
+                        <!-- Confirmation box -->
+                        <Border x:Name="ConfirmBox"
+                                IsVisible="False"
+                                Stroke="#4400D4FF"
+                                BackgroundColor="#0F00D4FF"
+                                Padding="15">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="2"/>
+                            </Border.StrokeShape>
+                            <HorizontalStackLayout Spacing="12">
+                                <Label Text="📍" FontSize="20"/>
+                                <VerticalStackLayout>
+                                    <Label x:Name="ConfirmCity"
+                                           TextColor="White"
+                                           FontSize="13"
+                                           FontFamily="OpenSansRegular"/>
+                                    <Label x:Name="ConfirmCountry"
+                                           TextColor="#3a5068"
+                                           FontSize="10"
+                                           FontFamily="OpenSansRegular"/>
+                                </VerticalStackLayout>
+                                <Label Text="✓ CONFIRMED"
+                                       TextColor="#00d4ff"
+                                       FontSize="10"
+                                       VerticalOptions="Center"
+                                       Margin="20,0,0,0"
+                                       FontFamily="OpenSansRegular"/>
+                            </HorizontalStackLayout>
+                        </Border>
+
+                        <Button x:Name="NextBtn"
+                                Text="NEXT: SELECT INTERESTS →"
+                                Clicked="OnNextClicked"
+                                IsEnabled="False"
+                                BackgroundColor="#33FFFFFF"
+                                TextColor="#3a5068"
+                                FontFamily="OpenSansRegular"
+                                FontAttributes="Bold"
+                                CornerRadius="2"/>
+                    </VerticalStackLayout>
+
+                    <!-- STEP 2: CATEGORIES -->
+                    <VerticalStackLayout x:Name="Step2Content"
+                                         IsVisible="False"
+                                         Spacing="24">
+
+                        <FlexLayout x:Name="CategoryGrid"
+                                    Wrap="Wrap"
+                                    JustifyContent="Start"
+                                    AlignItems="Start"/>
+
+                        <!-- Bottom buttons -->
+                        <FlexLayout>
+                            <Button Text="← BACK"
+                                    Clicked="OnBackClicked"
+                                    FlexLayout.Grow="1"
+                                    BackgroundColor="#0AFFFFFF"
+                                    TextColor="#3a5068"
+                                    FontFamily="OpenSansRegular"
+                                    Margin="0,0,8,0"
+                                    CornerRadius="2"/>
+                            <Button x:Name="SaveBtn"
+                                    Text="SAVE &amp; LAUNCH →"
+                                    Clicked="OnSaveClicked"
+                                    FlexLayout.Grow="3"
+                                    BackgroundColor="#00d4ff"
+                                    TextColor="#03060f"
+                                    FontFamily="OpenSansRegular"
+                                    FontAttributes="Bold"
+                                    CornerRadius="2"/>
+                        </FlexLayout>
+
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,128 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventSpotter.Views.BookmarksPage"
+             BackgroundColor="#03060f"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="56, *">
+
+        <!-- NAV -->
+        <Border Grid.Row="0"
+                BackgroundColor="#E603060F"
+                Padding="20,0"
+                StrokeThickness="0">
+            <Border.StrokeShape>
+                <Rectangle/>
+            </Border.StrokeShape>
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <Button Text="← BACK"
+                        Clicked="OnBackClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="#3a5068"
+                        FontFamily="OpenSansRegular"
+                        FontSize="11"/>
+                <Label Grid.Column="1"
+                       Text="SAVED EVENTS"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontFamily="OpenSansRegular"
+                       FontSize="13"
+                       CharacterSpacing="3"
+                       TextColor="#00d4ff"/>
+                <Label Grid.Column="2"
+                       x:Name="CountLabel"
+                       Text="0 BOOKMARKS"
+                       TextColor="#3a5068"
+                       VerticalOptions="Center"
+                       FontFamily="OpenSansRegular"
+                       FontSize="10"/>
+            </Grid>
+        </Border>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="24"
+                                 MaximumWidthRequest="1100"
+                                 Spacing="24">
+
+                <!-- HEADER -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="✦ YOUR PERSONAL ITINERARY"
+                           TextColor="#00d4ff"
+                           Opacity="0.7"
+                           FontSize="10"
+                           CharacterSpacing="4"
+                           FontFamily="OpenSansRegular"/>
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="SAVED"
+                               TextColor="White"
+                               FontSize="36"
+                               FontFamily="OpenSansRegular"/>
+                        <Label Text="EVENTS"
+                               TextColor="#00d4ff"
+                               FontSize="36"
+                               FontFamily="OpenSansRegular"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <!-- LOADING STATE -->
+                <HorizontalStackLayout x:Name="LoadingLayout"
+                                       IsVisible="True"
+                                       Spacing="12"
+                                       HorizontalOptions="Start"
+                                       Padding="0,40">
+                    <ActivityIndicator IsRunning="True"
+                                       Color="#00d4ff"
+                                       WidthRequest="20"
+                                       HeightRequest="20"/>
+                    <Label Text="ACQUIRING SAVED SIGNALS..."
+                           TextColor="#3a5068"
+                           FontSize="11"
+                           CharacterSpacing="2"
+                           VerticalOptions="Center"
+                           FontFamily="OpenSansRegular"/>
+                </HorizontalStackLayout>
+
+                <!-- EMPTY STATE -->
+                <VerticalStackLayout x:Name="EmptyLayout"
+                                     IsVisible="False"
+                                     HorizontalOptions="Center"
+                                     Spacing="16"
+                                     Padding="0,60">
+                    <Label Text="🔖"
+                           FontSize="48"
+                           Opacity="0.2"
+                           HorizontalOptions="Center"/>
+                    <Label Text="NO SAVED EVENTS YET"
+                           TextColor="#3a5068"
+                           FontSize="11"
+                           HorizontalOptions="Center"
+                           CharacterSpacing="2"
+                           FontFamily="OpenSansRegular"/>
+                    <Label Text="Hit SAVE on any event card to add it here"
+                           TextColor="#3a5068"
+                           FontSize="11"
+                           HorizontalOptions="Center"
+                           FontFamily="OpenSansRegular"/>
+                    <Button Text="BROWSE EVENTS →"
+                            Clicked="OnBackClicked"
+                            BackgroundColor="Transparent"
+                            BorderColor="#3300D4FF"
+                            BorderWidth="1"
+                            TextColor="#00d4ff"
+                            FontFamily="OpenSansRegular"
+                            FontSize="11"
+                            CornerRadius="2"
+                            Padding="20,10"/>
+                </VerticalStackLayout>
+
+                <!-- BOOKMARKS GRID -->
+                <FlexLayout x:Name="BookmarksGrid"
+                            Wrap="Wrap"
+                            JustifyContent="Start"
+                            AlignItems="Start"
+                            AlignContent="Start"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

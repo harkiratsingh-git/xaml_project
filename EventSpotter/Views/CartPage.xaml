@@ -1,0 +1,185 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventSpotter.Views.CartPage"
+             BackgroundColor="#03060f"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="56, *">
+
+        <!-- NAV -->
+        <Border Grid.Row="0"
+                BackgroundColor="#E603060F"
+                Padding="20,0"
+                StrokeThickness="0">
+            <Border.StrokeShape>
+                <Rectangle/>
+            </Border.StrokeShape>
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <Button Text="← BACK"
+                        Clicked="OnBackClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="#3a5068"
+                        FontFamily="OpenSansRegular"
+                        FontSize="11"/>
+                <Label Grid.Column="1"
+                       Text="MISSION CART"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontFamily="OpenSansRegular"
+                       FontSize="13"
+                       CharacterSpacing="3"
+                       TextColor="#00d4ff"/>
+                <Label Grid.Column="2"
+                       x:Name="ItemCountLabel"
+                       Text="0 ITEMS"
+                       TextColor="#3a5068"
+                       VerticalOptions="Center"
+                       FontFamily="OpenSansRegular"
+                       FontSize="10"/>
+            </Grid>
+        </Border>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="24"
+                                 MaximumWidthRequest="900"
+                                 Spacing="0">
+
+                <!-- SUCCESS STATE -->
+                <VerticalStackLayout x:Name="SuccessLayout"
+                                     IsVisible="False"
+                                     Spacing="20"
+                                     HorizontalOptions="Center"
+                                     Padding="0,80">
+                    <Label Text="✓"
+                           FontSize="60"
+                           TextColor="#06d6a0"
+                           HorizontalOptions="Center"/>
+                    <Label Text="BOOKING CONFIRMED"
+                           TextColor="#06d6a0"
+                           FontSize="10"
+                           CharacterSpacing="4"
+                           HorizontalOptions="Center"
+                           FontFamily="OpenSansRegular"/>
+                    <Label Text="TICKETS SECURED"
+                           TextColor="White"
+                           FontSize="32"
+                           HorizontalOptions="Center"
+                           FontFamily="OpenSansRegular"/>
+                    <Label Text="Confirmation sent to your email.&#10;Returning to discover..."
+                           TextColor="#3a5068"
+                           HorizontalTextAlignment="Center"
+                           FontSize="11"
+                           LineHeight="2"
+                           FontFamily="OpenSansRegular"/>
+                    <ProgressBar x:Name="SuccessProgress"
+                                 Progress="1.0"
+                                 ProgressColor="#06d6a0"
+                                 WidthRequest="200"/>
+                </VerticalStackLayout>
+
+                <!-- EMPTY STATE -->
+                <VerticalStackLayout x:Name="EmptyLayout"
+                                     IsVisible="False"
+                                     Spacing="20"
+                                     HorizontalOptions="Center"
+                                     Padding="0,80">
+                    <Label Text="◎"
+                           FontSize="48"
+                           Opacity="0.2"
+                           HorizontalOptions="Center"/>
+                    <Label Text="YOUR CART IS EMPTY"
+                           TextColor="#3a5068"
+                           FontSize="11"
+                           CharacterSpacing="3"
+                           HorizontalOptions="Center"
+                           FontFamily="OpenSansRegular"/>
+                    <Button Text="BROWSE EVENTS →"
+                            Clicked="OnBackClicked"
+                            BackgroundColor="Transparent"
+                            BorderColor="#3300D4FF"
+                            BorderWidth="1"
+                            TextColor="#00d4ff"
+                            FontFamily="OpenSansRegular"
+                            FontSize="11"
+                            CornerRadius="2"
+                            Padding="20,10"/>
+                </VerticalStackLayout>
+
+                <!-- CART CONTENT -->
+                <Grid x:Name="CartContent"
+                      ColumnDefinitions="*, 300"
+                      ColumnSpacing="24">
+
+                    <!-- Items -->
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="YOUR SELECTIONS"
+                               FontSize="9"
+                               TextColor="#3a5068"
+                               CharacterSpacing="3"
+                               FontFamily="OpenSansRegular"
+                               Margin="0,0,0,4"/>
+                        <VerticalStackLayout x:Name="ItemsStack" Spacing="10"/>
+                    </VerticalStackLayout>
+
+                    <!-- Order summary -->
+                    <VerticalStackLayout Grid.Column="1" Spacing="14">
+                        <Border Stroke="#2600D4FF"
+                                StrokeThickness="1"
+                                BackgroundColor="#F2080D1A"
+                                Padding="20">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="3"/>
+                            </Border.StrokeShape>
+                            <VerticalStackLayout Spacing="16">
+
+                                <Label Text="ORDER SUMMARY"
+                                       TextColor="#00d4ff"
+                                       FontSize="9"
+                                       CharacterSpacing="3"
+                                       FontFamily="OpenSansRegular"/>
+
+                                <VerticalStackLayout x:Name="SummaryList" Spacing="10"/>
+
+                                <BoxView HeightRequest="1"
+                                         Color="#1AFFFFFF"
+                                         Margin="0,4"/>
+
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <Label Text="TOTAL"
+                                           TextColor="#3a5068"
+                                           FontSize="10"
+                                           VerticalOptions="Center"
+                                           FontFamily="OpenSansRegular"/>
+                                    <Label Grid.Column="1"
+                                           x:Name="TotalPriceLabel"
+                                           Text="€ 0.00"
+                                           TextColor="White"
+                                           FontSize="24"
+                                           FontFamily="OpenSansRegular"/>
+                                </Grid>
+
+                                <Button Text="CONFIRM BOOKING →"
+                                        Clicked="OnCheckoutClicked"
+                                        BackgroundColor="#00d4ff"
+                                        TextColor="#03060f"
+                                        FontFamily="OpenSansRegular"
+                                        FontAttributes="Bold"
+                                        HeightRequest="50"
+                                        CornerRadius="2"/>
+
+                                <Label Text="🔒 SECURE CHECKOUT&#10;Tickets sent to your email"
+                                       TextColor="#3a5068"
+                                       FontSize="9"
+                                       HorizontalTextAlignment="Center"
+                                       LineHeight="1.8"
+                                       FontFamily="OpenSansRegular"/>
+
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

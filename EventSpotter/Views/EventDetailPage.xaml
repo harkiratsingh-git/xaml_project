@@ -1,0 +1,373 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventSpotter.Views.EventDetailPage"
+             BackgroundColor="#03060f"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="56, *">
+
+        <!-- NAV -->
+        <Border Grid.Row="0"
+                BackgroundColor="#E603060F"
+                Padding="20,0"
+                StrokeThickness="0">
+            <Border.StrokeShape>
+                <Rectangle/>
+            </Border.StrokeShape>
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <Button Text="← BACK"
+                        Clicked="OnBackClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="#3a5068"
+                        FontFamily="OpenSansRegular"
+                        FontSize="11"/>
+                <Label Grid.Column="1"
+                       x:Name="CategoryLabel"
+                       Text="CATEGORY"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontFamily="OpenSansRegular"
+                       FontSize="13"
+                       CharacterSpacing="3"
+                       TextColor="#00d4ff"/>
+                <Button Grid.Column="2"
+                        x:Name="CartBtn"
+                        Text="CART [0]"
+                        Clicked="OnCartClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="#00d4ff"
+                        FontFamily="OpenSansRegular"
+                        FontSize="11"/>
+            </Grid>
+        </Border>
+
+        <!-- CONTENT -->
+        <ScrollView Grid.Row="1">
+            <Grid ColumnDefinitions="*, 360"
+                  Padding="20"
+                  ColumnSpacing="20">
+
+                <!-- LEFT COLUMN -->
+                <VerticalStackLayout Spacing="20">
+
+                    <!-- Hero image -->
+                    <Grid HeightRequest="360" CornerRadius="4">
+                        <Image x:Name="EventImage"
+                               Aspect="AspectFill"
+                               Opacity="0.65"/>
+                        <BoxView>
+                            <BoxView.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="Transparent" Offset="0.4"/>
+                                    <GradientStop Color="#03060f" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </BoxView.Background>
+                        </BoxView>
+                        <VerticalStackLayout VerticalOptions="End"
+                                             Margin="20"
+                                             Spacing="6">
+                            <Label x:Name="BadgeLabel"
+                                   Text="✦ CATEGORY"
+                                   TextColor="#00d4ff"
+                                   FontSize="10"
+                                   CharacterSpacing="3"
+                                   FontFamily="OpenSansRegular"/>
+                            <Label x:Name="TitleLabel"
+                                   Text="Event Title"
+                                   TextColor="White"
+                                   FontSize="28"
+                                   FontFamily="OpenSansRegular"
+                                   LineBreakMode="WordWrap"/>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Exclusive intel -->
+                    <Border x:Name="NotifBorder"
+                            Stroke="#3300D4FF"
+                            StrokeThickness="1"
+                            BackgroundColor="#0800d4ff"
+                            Padding="16">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="3"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="⚡ EXCLUSIVE INTEL"
+                                   TextColor="#00d4ff"
+                                   FontSize="9"
+                                   CharacterSpacing="3"
+                                   FontFamily="OpenSansRegular"/>
+                            <Border BackgroundColor="#1A00D4FF"
+                                    Stroke="#3300D4FF"
+                                    StrokeThickness="1"
+                                    Padding="12">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="2"/>
+                                </Border.StrokeShape>
+                                <HorizontalStackLayout Spacing="10">
+                                    <Label x:Name="NotifIcon"
+                                           Text="🎤"
+                                           FontSize="18"
+                                           VerticalOptions="Center"/>
+                                    <Label x:Name="NotifText"
+                                           Text="Loading intel..."
+                                           TextColor="#c8d8e8"
+                                           VerticalOptions="Center"
+                                           FontFamily="OpenSansRegular"
+                                           FontSize="12"/>
+                                </HorizontalStackLayout>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- Details grid — BoxView FIRST so content renders on top -->
+                    <Grid ColumnDefinitions="*, *"
+                          RowDefinitions="Auto, Auto, Auto, Auto"
+                          BackgroundColor="#1AFFFFFF">
+
+                        <!-- Row 0 -->
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="0"
+                                             Padding="14"
+                                             BackgroundColor="#E6080D1A">
+                            <Label Text="DATE" FontSize="9"
+                                   TextColor="#3a5068"
+                                   CharacterSpacing="2"
+                                   FontFamily="OpenSansRegular"/>
+                            <Label x:Name="DateLabel"
+                                   TextColor="#e8f4ff"
+                                   FontSize="13"
+                                   FontFamily="OpenSansRegular"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="1"
+                                             Padding="14"
+                                             BackgroundColor="#E6080D1A">
+                            <Label Text="DOORS OPEN" FontSize="9"
+                                   TextColor="#3a5068"
+                                   CharacterSpacing="2"
+                                   FontFamily="OpenSansRegular"/>
+                            <Label x:Name="TimeLabel"
+                                   TextColor="#e8f4ff"
+                                   FontSize="13"
+                                   FontFamily="OpenSansRegular"/>
+                        </VerticalStackLayout>
+
+                        <!-- Row 1 -->
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="0"
+                                             Padding="14"
+                                             BackgroundColor="#E6080D1A">
+                            <Label Text="VENUE" FontSize="9"
+                                   TextColor="#3a5068"
+                                   CharacterSpacing="2"
+                                   FontFamily="OpenSansRegular"/>
+                            <Label x:Name="VenueLabel"
+                                   TextColor="#e8f4ff"
+                                   FontSize="13"
+                                   FontFamily="OpenSansRegular"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1"
+                                             Padding="14"
+                                             BackgroundColor="#E6080D1A">
+                            <Label Text="CITY" FontSize="9"
+                                   TextColor="#3a5068"
+                                   CharacterSpacing="2"
+                                   FontFamily="OpenSansRegular"/>
+                            <Label x:Name="CityLabel"
+                                   TextColor="#e8f4ff"
+                                   FontSize="13"
+                                   FontFamily="OpenSansRegular"/>
+                        </VerticalStackLayout>
+
+                        <!-- Row 2 -->
+                        <VerticalStackLayout Grid.Row="2" Grid.Column="0"
+                                             Padding="14"
+                                             BackgroundColor="#E6080D1A">
+                            <Label Text="COUNTRY" FontSize="9"
+                                   TextColor="#3a5068"
+                                   CharacterSpacing="2"
+                                   FontFamily="OpenSansRegular"/>
+                            <Label x:Name="CountryLabel"
+                                   TextColor="#e8f4ff"
+                                   FontSize="13"
+                                   FontFamily="OpenSansRegular"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Row="2" Grid.Column="1"
+                                             Padding="14"
+                                             BackgroundColor="#E6080D1A">
+                            <Label Text="ENTRY" FontSize="9"
+                                   TextColor="#3a5068"
+                                   CharacterSpacing="2"
+                                   FontFamily="OpenSansRegular"/>
+                            <Label x:Name="EntryLabel"
+                                   TextColor="#06d6a0"
+                                   FontSize="13"
+                                   FontFamily="OpenSansRegular"/>
+                        </VerticalStackLayout>
+
+                    </Grid>
+
+                    <!-- Description -->
+                    <VerticalStackLayout x:Name="DescriptionLayout"
+                                         IsVisible="False"
+                                         Spacing="8"
+                                         Padding="14"
+                                         BackgroundColor="#0D080D1A">
+                        <Label Text="ABOUT THIS EVENT"
+                               FontSize="9"
+                               TextColor="#3a5068"
+                               CharacterSpacing="2"
+                               FontFamily="OpenSansRegular"/>
+                        <Label x:Name="DescriptionLabel"
+                               TextColor="#c8d8e8"
+                               FontSize="13"
+                               LineHeight="1.7"
+                               FontFamily="OpenSansRegular"/>
+                    </VerticalStackLayout>
+
+                    <!-- Official link -->
+                    <Button x:Name="OfficialLinkBtn"
+                            Text="🔗 OFFICIAL EVENT WEBSITE →"
+                            IsVisible="False"
+                            Clicked="OnOfficialLinkClicked"
+                            BackgroundColor="#0800D4FF"
+                            TextColor="#00d4ff"
+                            FontFamily="OpenSansRegular"
+                            CornerRadius="2"
+                            HorizontalOptions="Fill"/>
+
+                </VerticalStackLayout>
+
+                <!-- RIGHT COLUMN — booking panel -->
+                <VerticalStackLayout Grid.Column="1" Spacing="14">
+                    <Border Stroke="#3300D4FF"
+                            StrokeThickness="1"
+                            BackgroundColor="#F2080D1A"
+                            Padding="22">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="3"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="18">
+
+                            <Label Text="SECURE YOUR SPOT"
+                                   TextColor="#00d4ff"
+                                   FontSize="9"
+                                   CharacterSpacing="3"
+                                   FontFamily="OpenSansRegular"/>
+
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="PRICE PER TICKET"
+                                       FontSize="9"
+                                       TextColor="#3a5068"
+                                       FontFamily="OpenSansRegular"/>
+                                <Label x:Name="PriceLabel"
+                                       Text="€ 24.99"
+                                       TextColor="White"
+                                       FontSize="30"
+                                       FontFamily="OpenSansRegular"/>
+                            </VerticalStackLayout>
+
+                            <!-- Quantity -->
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="QUANTITY"
+                                       FontSize="9"
+                                       TextColor="#3a5068"
+                                       FontFamily="OpenSansRegular"/>
+                                <HorizontalStackLayout Spacing="14"
+                                                       VerticalOptions="Center">
+                                    <Button Text="−"
+                                            Clicked="OnDecreaseTickets"
+                                            WidthRequest="36"
+                                            HeightRequest="36"
+                                            BackgroundColor="#1AFFFFFF"
+                                            TextColor="White"
+                                            CornerRadius="2"
+                                            FontSize="18"/>
+                                    <Label x:Name="TicketCountLabel"
+                                           Text="1"
+                                           TextColor="White"
+                                           FontSize="20"
+                                           VerticalOptions="Center"
+                                           MinimumWidthRequest="24"
+                                           HorizontalTextAlignment="Center"
+                                           FontFamily="OpenSansRegular"/>
+                                    <Button Text="+"
+                                            Clicked="OnIncreaseTickets"
+                                            WidthRequest="36"
+                                            HeightRequest="36"
+                                            BackgroundColor="#1AFFFFFF"
+                                            TextColor="White"
+                                            CornerRadius="2"
+                                            FontSize="18"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+
+                            <!-- Total -->
+                            <Grid ColumnDefinitions="*, Auto">
+                                <Label Text="TOTAL"
+                                       TextColor="#3a5068"
+                                       FontSize="10"
+                                       VerticalOptions="Center"
+                                       FontFamily="OpenSansRegular"/>
+                                <Label x:Name="TotalLabel"
+                                       Grid.Column="1"
+                                       Text="€ 24.99"
+                                       TextColor="White"
+                                       FontSize="20"
+                                       FontFamily="OpenSansRegular"/>
+                            </Grid>
+
+                            <Button x:Name="AddBtn"
+                                    Text="ADD TO CART"
+                                    Clicked="OnAddToCart"
+                                    BackgroundColor="#00d4ff"
+                                    TextColor="#03060f"
+                                    FontFamily="OpenSansRegular"
+                                    FontAttributes="Bold"
+                                    HeightRequest="50"
+                                    CornerRadius="2"/>
+
+                            <!-- Availability -->
+                            <VerticalStackLayout Spacing="6">
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <Label Text="AVAILABILITY"
+                                           FontSize="9"
+                                           TextColor="#3a5068"
+                                           FontFamily="OpenSansRegular"/>
+                                    <Label Grid.Column="1"
+                                           Text="FILLING FAST"
+                                           FontSize="9"
+                                           TextColor="#ff6b35"
+                                           FontFamily="OpenSansRegular"/>
+                                </Grid>
+                                <ProgressBar Progress="0.72"
+                                             ProgressColor="#ff6b35"/>
+                            </VerticalStackLayout>
+
+                            <!-- Contact -->
+                            <VerticalStackLayout Spacing="4"
+                                                 Padding="0,10,0,0">
+                                <Label Text="CONTACT"
+                                       FontSize="9"
+                                       TextColor="#3a5068"
+                                       CharacterSpacing="2"
+                                       FontFamily="OpenSansRegular"/>
+                                <Label Text="📧 info@eventspotter.eu"
+                                       TextColor="#3a5068"
+                                       FontSize="11"
+                                       FontFamily="OpenSansRegular"/>
+                                <Label Text="📞 +32 2 000 0000"
+                                       TextColor="#3a5068"
+                                       FontSize="11"
+                                       FontFamily="OpenSansRegular"/>
+                            </VerticalStackLayout>
+
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+
+            </Grid>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

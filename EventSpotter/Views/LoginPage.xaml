@@ -1,0 +1,96 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:drawables="clr-namespace:EventSpotter.Drawables"
+             x:Class="EventSpotter.Views.LoginPage"
+             BackgroundColor="#03060f"
+             Shell.NavBarIsVisible="False">
+
+    <Grid ColumnDefinitions="*, 420">
+
+        <!-- LEFT: Animation Canvas -->
+        <GraphicsView x:Name="SceneCanvas" Grid.Column="0">
+            <GraphicsView.Drawable>
+                <drawables:LoginSceneDrawable x:Name="MainDrawable"/>
+            </GraphicsView.Drawable>
+        </GraphicsView>
+
+        <!-- RIGHT: Form Panel -->
+        <Frame Grid.Column="1"
+               BackgroundColor="#0D080D1A"
+               BorderColor="#1A00D4FF"
+               CornerRadius="0"
+               Padding="40">
+
+            <VerticalStackLayout Spacing="20" VerticalOptions="Center">
+
+                <Label Text="✦ EVENT SPOTTER"
+                       TextColor="#00d4ff"
+                       FontSize="10"
+                       CharacterSpacing="4"/>
+
+                <Label x:Name="TitleLabel"
+                       Text="SIGN IN"
+                       TextColor="White"
+                       FontSize="28"
+                       FontFamily="OpenSansRegular"/>
+
+                <!-- ERROR LABEL — hidden by default -->
+                <Label x:Name="ErrorLabel"
+                       Text=""
+                       TextColor="#ff4d4d"
+                       FontSize="11"
+                       IsVisible="False"/>
+
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="EMAIL" FontSize="9" TextColor="#3a5068"/>
+                    <Entry x:Name="EmailEntry"
+                           Placeholder="pilot@eventspotter.eu"
+                           PlaceholderColor="#3a5068"
+                           TextColor="#e8f4ff"
+                           BackgroundColor="#0A000000"
+                           TextChanged="OnInputChanged"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="PASSWORD" FontSize="9" TextColor="#3a5068"/>
+                    <Entry x:Name="PasswordEntry"
+                           IsPassword="True"
+                           Placeholder="••••••••"
+                           PlaceholderColor="#3a5068"
+                           TextColor="#e8f4ff"
+                           BackgroundColor="#0A000000"
+                           TextChanged="OnInputChanged"/>
+                </VerticalStackLayout>
+
+                <!-- Password strength bar — only visible in register mode -->
+                <VerticalStackLayout x:Name="StrengthLayout" IsVisible="False" Spacing="4">
+                    <Label x:Name="StrengthLabel"
+                           Text="WEAK"
+                           TextColor="#ff4d4d"
+                           FontSize="9"/>
+                    <ProgressBar x:Name="StrengthBar"
+                                 Progress="0"
+                                 ProgressColor="#ff4d4d"
+                                 HeightRequest="3"/>
+                </VerticalStackLayout>
+
+                <Button x:Name="SubmitBtn"
+                        Text="⚑ ENTER THE GRID →"
+                        BackgroundColor="#00d4ff"
+                        TextColor="#03060f"
+                        FontAttributes="Bold"
+                        Clicked="OnSubmitClicked"
+                        HeightRequest="50"
+                        CornerRadius="2"/>
+
+                <Button x:Name="SwitchModeBtn"
+                        Text="NO ACCOUNT? JOIN THE GRID →"
+                        BackgroundColor="Transparent"
+                        TextColor="#3a5068"
+                        FontSize="10"
+                        Clicked="OnSwitchModeClicked"/>
+
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>
