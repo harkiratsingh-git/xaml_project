@@ -1,0 +1,74 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/Harkirat/Desktop/xaml_project/EventSpotterUploader/EventSpotterUploader.csproj": {}
+  },
+  "projects": {
+    "/Users/Harkirat/Desktop/xaml_project/EventSpotterUploader/EventSpotterUploader.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/Harkirat/Desktop/xaml_project/EventSpotterUploader/EventSpotterUploader.csproj",
+        "projectName": "EventSpotterUploader",
+        "projectPath": "/Users/Harkirat/Desktop/xaml_project/EventSpotterUploader/EventSpotterUploader.csproj",
+        "packagesPath": "/Users/Harkirat/.nuget/packages/",
+        "outputPath": "/Users/Harkirat/Desktop/xaml_project/EventSpotterUploader/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/Harkirat/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "supabase-csharp": {
+              "target": "Package",
+              "version": "[0.16.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
