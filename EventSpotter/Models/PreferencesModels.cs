@@ -18,7 +18,6 @@ public class CategoryData
     public bool IsSelected { get; set; }
 }
 
-// ← ADD — maps to your Supabase profiles table
 [Table("profiles")]
 public class UserProfile : BaseModel
 {
@@ -37,11 +36,9 @@ public class UserProfile : BaseModel
     [Column("created_at")]
     public DateTime CreatedAt { get; set; }
 
-    // Helper — not a DB column
     public string HomeCityName { get; set; }
 }
 
-// ← ADD — maps to your Supabase bookmark table
 [Table("bookmark")]
 public class BookmarkModel : BaseModel
 {
@@ -58,7 +55,6 @@ public class BookmarkModel : BaseModel
     public DateTime CreatedAt { get; set; }
 }
 
-// ← ADD — maps to your Supabase cart table
 [Table("cart")]
 public class CartModel : BaseModel
 {
@@ -77,11 +73,9 @@ public class CartModel : BaseModel
     [Column("added_at")]
     public DateTime AddedAt { get; set; }
 
-    // Helper — not a DB column
     public EventModel Event { get; set; }
 }
 
-// ← ADD — maps to your Supabase review table
 [Table("review")]
 public class ReviewModel : BaseModel
 {
@@ -102,4 +96,82 @@ public class ReviewModel : BaseModel
 
     [Column("created_at")]
     public DateTime CreatedAt { get; set; }
+}
+
+// ── New models for venue and category ────────────────────────
+
+[Table("venue")]
+public class VenueModel : BaseModel
+{
+    [PrimaryKey("venue_id", false)]
+    public int VenueId { get; set; }
+
+    [Column("venue_name")]
+    public string VenueName { get; set; }
+
+    [Column("address")]
+    public string Address { get; set; }
+
+    [Column("image_url")]
+    public string ImageUrl { get; set; }
+
+    [Column("city_id")]
+    public int? CityId { get; set; }
+
+    [Column("capacity")]
+    public int? Capacity { get; set; }
+
+    [Column("website")]
+    public string Website { get; set; }
+
+    [Column("phone")]
+    public string Phone { get; set; }
+
+    [Column("latitude")]
+    public decimal? Latitude { get; set; }
+
+    [Column("longitude")]
+    public decimal? Longitude { get; set; }
+}
+
+[Table("category")]
+public class CategoryModel : BaseModel
+{
+    [PrimaryKey("category_id", false)]
+    public int CategoryId { get; set; }
+
+    [Column("category_name")]
+    public string CategoryName { get; set; }
+
+    [Column("icon")]
+    public string Icon { get; set; }
+
+    [Column("slug")]
+    public string Slug { get; set; }
+}
+
+[Table("city")]
+public class CityModel : BaseModel
+{
+    [PrimaryKey("city_id", false)]
+    public int CityId { get; set; }
+
+    [Column("city_name")]
+    public string CityName { get; set; }
+
+    [Column("country_id")]
+    public int? CountryId { get; set; }
+}
+
+[Table("country")]
+public class CountryModel : BaseModel
+{
+    [PrimaryKey("country_id", false)]
+    public int CountryId { get; set; }
+
+    [Column("country_name")]
+    public string CountryName { get; set; }
+
+    [Column("postcode")]
+    public string Postcode { get; set; }
 }
