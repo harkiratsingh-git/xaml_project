@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventSpotter.Views.AdminPage"
+             BackgroundColor="#03060f"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="56, Auto, *">
+
+        <!-- NAV -->
+        <Border Grid.Row="0"
+                BackgroundColor="#E603060F"
+                Padding="20,0"
+                StrokeThickness="0">
+            <Border.StrokeShape>
+                <Rectangle/>
+            </Border.StrokeShape>
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <Button Text="← BACK"
+                        Clicked="OnBackClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="#3a5068"
+                        FontFamily="OpenSansRegular"
+                        FontSize="11"/>
+                <Label Grid.Column="1"
+                       Text="ADMIN TERMINAL"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontFamily="OpenSansRegular"
+                       FontSize="13"
+                       CharacterSpacing="3"
+                       TextColor="#ff6b35"/>
+                <Label Grid.Column="2"
+                       x:Name="AdminBadge"
+                       Text="⚑ ADMIN"
+                       TextColor="#ff6b35"
+                       VerticalOptions="Center"
+                       FontFamily="OpenSansRegular"
+                       FontSize="10"/>
+            </Grid>
+        </Border>
+
+        <!-- TAB BAR -->
+        <Border Grid.Row="1"
+                BackgroundColor="#0A03060F"
+                Padding="20,0"
+                StrokeThickness="0">
+            <Border.StrokeShape>
+                <Rectangle/>
+            </Border.StrokeShape>
+            <HorizontalStackLayout Spacing="0">
+                <Button x:Name="TabEventsBtn"
+                        Text="EVENTS"
+                        Clicked="OnTabEvents"
+                        BackgroundColor="Transparent"
+                        TextColor="#ff6b35"
+                        FontFamily="OpenSansRegular"
+                        FontSize="11"
+                        Padding="20,14"/>
+                <Button x:Name="TabUsersBtn"
+                        Text="USERS"
+                        Clicked="OnTabUsers"
+                        BackgroundColor="Transparent"
+                        TextColor="#3a5068"
+                        FontFamily="OpenSansRegular"
+                        FontSize="11"
+                        Padding="20,14"/>
+                <Button x:Name="TabStatsBtn"
+                        Text="STATS"
+                        Clicked="OnTabStats"
+                        BackgroundColor="Transparent"
+                        TextColor="#3a5068"
+                        FontFamily="OpenSansRegular"
+                        FontSize="11"
+                        Padding="20,14"/>
+            </HorizontalStackLayout>
+        </Border>
+
+        <!-- CONTENT -->
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout Padding="24" Spacing="20">
+
+                <!-- ACCESS DENIED state -->
+                <VerticalStackLayout x:Name="AccessDeniedLayout"
+                                     IsVisible="False"
+                                     HorizontalOptions="Center"
+                                     Spacing="16"
+                                     Padding="0,80">
+                    <Label Text="⚠"
+                           FontSize="48"
+                           HorizontalOptions="Center"
+                           TextColor="#ff4d4d"/>
+                    <Label Text="ACCESS DENIED"
+                           TextColor="#ff4d4d"
+                           FontSize="16"
+                           HorizontalOptions="Center"
+                           CharacterSpacing="3"
+                           FontFamily="OpenSansRegular"/>
+                    <Label Text="Admin privileges required"
+                           TextColor="#3a5068"
+                           FontSize="12"
+                           HorizontalOptions="Center"
+                           FontFamily="OpenSansRegular"/>
+                </VerticalStackLayout>
+
+                <!-- LOADING -->
+                <ActivityIndicator x:Name="AdminLoader"
+                                   IsRunning="True"
+                                   IsVisible="True"
+                                   Color="#ff6b35"
+                                   HorizontalOptions="Center"/>
+
+                <!-- ══ EVENTS TAB ══ -->
+                <VerticalStackLayout x:Name="EventsTab" IsVisible="False" Spacing="16">
+
+                    <Grid ColumnDefinitions="*, Auto">
+                        <VerticalStackLayout>
+                            <Label Text="✦ EVENT MANAGEMENT"
+                                   TextColor="#ff6b35"
+                                   FontSize="10"
+                                   CharacterSpacing="3"
+                                   FontFamily="OpenSansRegular"/>
+                            <Label x:Name="EventCountLabel"
+                                   Text="0 EVENTS IN DATABASE"
+                                   TextColor="White"
+                                   FontSize="22"
+                                   FontFamily="OpenSansRegular"/>
+                        </VerticalStackLayout>
+                        <Button Grid.Column="1"
+                                Text="+ ADD EVENT"
+                                Clicked="OnAddEventClicked"
+                                BackgroundColor="#ff6b35"
+                                TextColor="#03060f"
+                                FontFamily="OpenSansRegular"
+                                FontAttributes="Bold"
+                                CornerRadius="2"
+                                VerticalOptions="Center"/>
+                    </Grid>
+
+                    <!-- Add/Edit Event Form -->
+                    <Border x:Name="EventFormBorder"
+                            IsVisible="False"
+                            Stroke="#33FF6B35"
+                            StrokeThickness="1"
+                            BackgroundColor="#0FFF6B35"
+                            Padding="20">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="3"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="14">
+
+                            <Label x:Name="FormTitle"
+                                   Text="ADD NEW EVENT"
+                                   TextColor="#ff6b35"
+                                   FontSize="11"
+                                   CharacterSpacing="2"
+                                   FontFamily="OpenSansRegular"/>
+
+                            <Grid ColumnDefinitions="*, *" ColumnSpacing="12">
+                                <VerticalStackLayout Spacing="5">
+                                    <Label Text="EVENT TITLE"
+                                           FontSize="9"
+                                           TextColor="#3a5068"
+                                           FontFamily="OpenSansRegular"/>
+                                    <Entry x:Name="FormTitle_Input"
+                                           Placeholder="e.g. Jazz Night Brussels"
+                                           PlaceholderColor="#3a5068"
+                                           TextColor="White"
+                                           BackgroundColor="#0DFF6B35"
+                                           FontFamily="OpenSansRegular"/>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                    <Label Text="IMAGE URL"
+                                           FontSize="9"
+                                           TextColor="#3a5068"
+                                           FontFamily="OpenSansRegular"/>
+                                    <Entry x:Name="FormImage_Input"
+                                           Placeholder="https://..."
+                                           PlaceholderColor="#3a5068"
+                                           TextColor="White"
+                                           BackgroundColor="#0DFF6B35"
+                                           FontFamily="OpenSansRegular"/>
+                                </VerticalStackLayout>
+                            </Grid>
+
+                            <Grid ColumnDefinitions="*, *" ColumnSpacing="12">
+                                <VerticalStackLayout Spacing="5">
+                                    <Label Text="START DATE (yyyy-MM-dd HH:mm)"
+                                           FontSize="9"
+                                           TextColor="#3a5068"
+                                           FontFamily="OpenSansRegular"/>
+                                    <Entry x:Name="FormStart_Input"
+                                           Placeholder="2026-06-01 19:00"
+                                           PlaceholderColor="#3a5068"
+                                           TextColor="White"
+                                           BackgroundColor="#0DFF6B35"
+                                           FontFamily="OpenSansRegular"/>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                    <Label Text="SOURCE URL"
+                                           FontSize="9"
+                                           TextColor="#3a5068"
+                                           FontFamily="OpenSansRegular"/>
+                                    <Entry x:Name="FormSource_Input"
+                                           Placeholder="https://..."
+                                           PlaceholderColor="#3a5068"
+                                           TextColor="White"
+                                           BackgroundColor="#0DFF6B35"
+                                           FontFamily="OpenSansRegular"/>
+                                </VerticalStackLayout>
+                            </Grid>
+
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="DESCRIPTION"
+                                       FontSize="9"
+                                       TextColor="#3a5068"
+                                       FontFamily="OpenSansRegular"/>
+                                <Editor x:Name="FormDesc_Input"
+                                        Placeholder="Event description..."
+                                        PlaceholderColor="#3a5068"
+                                        TextColor="White"
+                                        BackgroundColor="#0DFF6B35"
+                                        HeightRequest="80"
+                                        FontFamily="OpenSansRegular"/>
+                            </VerticalStackLayout>
+
+                            <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+                                <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                                    <CheckBox x:Name="FormFree_Check" Color="#ff6b35"/>
+                                    <Label Text="FREE ENTRY"
+                                           TextColor="#3a5068"
+                                           VerticalOptions="Center"
+                                           FontFamily="OpenSansRegular"
+                                           FontSize="11"/>
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Grid.Column="1" Spacing="10">
+                                    <Button Text="CANCEL"
+                                            Clicked="OnCancelForm"
+                                            BackgroundColor="Transparent"
+                                            TextColor="#3a5068"
+                                            FontFamily="OpenSansRegular"
+                                            CornerRadius="2"/>
+                                    <Button x:Name="FormSaveBtn"
+                                            Text="SAVE EVENT"
+                                            Clicked="OnSaveEvent"
+                                            BackgroundColor="#ff6b35"
+                                            TextColor="#03060f"
+                                            FontFamily="OpenSansRegular"
+                                            FontAttributes="Bold"
+                                            CornerRadius="2"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- Events list -->
+                    <VerticalStackLayout x:Name="EventsList" Spacing="8"/>
+
+                </VerticalStackLayout>
+
+                <!-- ══ USERS TAB ══ -->
+                <VerticalStackLayout x:Name="UsersTab" IsVisible="False" Spacing="16">
+
+                    <VerticalStackLayout>
+                        <Label Text="✦ USER MANAGEMENT"
+                               TextColor="#ff6b35"
+                               FontSize="10"
+                               CharacterSpacing="3"
+                               FontFamily="OpenSansRegular"/>
+                        <Label x:Name="UserCountLabel"
+                               Text="0 REGISTERED USERS"
+                               TextColor="White"
+                               FontSize="22"
+                               FontFamily="OpenSansRegular"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout x:Name="UsersList" Spacing="8"/>
+
+                </VerticalStackLayout>
+
+                <!-- ══ STATS TAB ══ -->
+                <VerticalStackLayout x:Name="StatsTab" IsVisible="False" Spacing="16">
+
+                    <VerticalStackLayout>
+                        <Label Text="✦ SYSTEM STATISTICS"
+                               TextColor="#ff6b35"
+                               FontSize="10"
+                               CharacterSpacing="3"
+                               FontFamily="OpenSansRegular"/>
+                        <Label Text="DATABASE OVERVIEW"
+                               TextColor="White"
+                               FontSize="22"
+                               FontFamily="OpenSansRegular"/>
+                    </VerticalStackLayout>
+
+                    <Grid ColumnDefinitions="*, *, *" ColumnSpacing="12">
+                        <Border Stroke="#33FF6B35" StrokeThickness="1"
+                                BackgroundColor="#0FFF6B35" Padding="20">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="3"/>
+                            </Border.StrokeShape>
+                            <VerticalStackLayout Spacing="4">
+                                <Label x:Name="StatEvents"
+                                       Text="0"
+                                       TextColor="#ff6b35"
+                                       FontSize="36"
+                                       FontFamily="OpenSansRegular"/>
+                                <Label Text="TOTAL EVENTS"
+                                       TextColor="#3a5068"
+                                       FontSize="9"
+                                       CharacterSpacing="2"
+                                       FontFamily="OpenSansRegular"/>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="1"
+                                Stroke="#3300D4FF" StrokeThickness="1"
+                                BackgroundColor="#0F00D4FF" Padding="20">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="3"/>
+                            </Border.StrokeShape>
+                            <VerticalStackLayout Spacing="4">
+                                <Label x:Name="StatUsers"
+                                       Text="0"
+                                       TextColor="#00d4ff"
+                                       FontSize="36"
+                                       FontFamily="OpenSansRegular"/>
+                                <Label Text="TOTAL USERS"
+                                       TextColor="#3a5068"
+                                       FontSize="9"
+                                       CharacterSpacing="2"
+                                       FontFamily="OpenSansRegular"/>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="2"
+                                Stroke="#3306D6A0" StrokeThickness="1"
+                                BackgroundColor="#0F06D6A0" Padding="20">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="3"/>
+                            </Border.StrokeShape>
+                            <VerticalStackLayout Spacing="4">
+                                <Label x:Name="StatBookmarks"
+                                       Text="0"
+                                       TextColor="#06d6a0"
+                                       FontSize="36"
+                                       FontFamily="OpenSansRegular"/>
+                                <Label Text="TOTAL BOOKMARKS"
+                                       TextColor="#3a5068"
+                                       FontSize="9"
+                                       CharacterSpacing="2"
+                                       FontFamily="OpenSansRegular"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>
